@@ -1,4 +1,4 @@
-﻿{
+{
   "files.associations": {
     "*.sicpackage": "json"
   },
@@ -15,5 +15,10 @@
       "fileMatch": ["*.module.json"],
       "url": "./.sitecore/schemas/ModuleFile.schema.json"
     }
-  ]
+  ],
+  "workbench.colorCustomizations": {
+    "activityBar.background": "#432713",
+    "titleBar.activeBackground": "#5E361A",
+    "titleBar.activeForeground": "#FDFAF8"
+  }
 }
