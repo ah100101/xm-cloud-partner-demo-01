@@ -17,6 +17,7 @@ const publicUrl = getPublicUrl();
 
 interface LayoutProps {
   layoutData: LayoutServiceData;
+  serverDate?: string;
 }
 
 interface RouteFields {
@@ -24,7 +25,7 @@ interface RouteFields {
   Title?: Field;
 }
 
-const Layout = ({ layoutData }: LayoutProps): JSX.Element => {
+const Layout = ({ layoutData, serverDate }: LayoutProps): JSX.Element => {
   const { route } = layoutData.sitecore;
   const fields = route?.fields as RouteFields;
   const isPageEditing = layoutData.sitecore.context.pageEditing;
@@ -48,6 +49,7 @@ const Layout = ({ layoutData }: LayoutProps): JSX.Element => {
         </main>
         <footer>
           <div id="footer">{route && <Placeholder name="headless-footer" rendering={route} />}</div>
+          {serverDate && <div>{serverDate}</div>}
         </footer>
       </div>
     </>

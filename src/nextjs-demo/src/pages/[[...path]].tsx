@@ -16,7 +16,12 @@ import { sitecorePagePropsFactory } from 'lib/page-props-factory';
 import { componentFactory, editingComponentFactory } from 'temp/componentFactory';
 import { sitemapFetcher } from 'lib/sitemap-fetcher';
 
-const SitecorePage = ({ notFound, componentProps, layoutData }: SitecorePageProps): JSX.Element => {
+const SitecorePage = ({
+  notFound,
+  componentProps,
+  layoutData,
+  serverDate,
+}: SitecorePageProps): JSX.Element => {
   useEffect(() => {
     // Since Sitecore editors do not support Fast Refresh, need to refresh editor chromes after Fast Refresh finished
     handleEditorFastRefresh();
@@ -44,7 +49,7 @@ const SitecorePage = ({ notFound, componentProps, layoutData }: SitecorePageProp
         {isComponentRendering ? (
           <EditingComponentPlaceholder rendering={layoutData.sitecore.route} />
         ) : (
-          <Layout layoutData={layoutData} />
+          <Layout serverDate={serverDate} layoutData={layoutData} />
         )}
       </SitecoreContext>
     </ComponentPropsContext>
@@ -96,12 +101,14 @@ export const getStaticProps: GetStaticProps = async (context) => {
     };
   }
 
+  props.serverDate = new Date().toString();
+
   return {
     props,
     // Next.js will attempt to re-generate the page:
     // - When a request comes in
     // - At most once every 5 seconds
-    revalidate: 5, // In seconds
+    revalidate: 3600, // In seconds
     notFound: props.notFound, // Returns custom 404 page with a status code of 404 when true
   };
 };
