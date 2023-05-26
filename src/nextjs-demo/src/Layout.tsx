@@ -25,11 +25,13 @@ interface RouteFields {
   Title?: Field;
 }
 
-const Layout = ({ layoutData, serverDate }: LayoutProps): JSX.Element => {
+const Layout = ({ layoutData }: LayoutProps): JSX.Element => {
   const { route } = layoutData.sitecore;
   const fields = route?.fields as RouteFields;
   const isPageEditing = layoutData.sitecore.context.pageEditing;
   const mainClassPageEditing = isPageEditing ? 'editing-mode' : 'prod-mode';
+
+  const nonPropServerDate = new Date().toString();
 
   return (
     <>
@@ -49,7 +51,8 @@ const Layout = ({ layoutData, serverDate }: LayoutProps): JSX.Element => {
         </main>
         <footer>
           <div id="footer">{route && <Placeholder name="headless-footer" rendering={route} />}</div>
-          {serverDate && <div>{serverDate}</div>}
+          {/* {serverDate && <div>{serverDate}</div>} */}
+          <div>{nonPropServerDate}</div>
         </footer>
       </div>
     </>
