@@ -48,7 +48,7 @@ const Layout = ({ layoutData }: LayoutProps): JSX.Element => {
         </main>
         <footer>
           <div id="footer">{route && <Placeholder name="headless-footer" rendering={route} />}</div>
-          <div>Version 1.0</div>
+          <div>Version 1.1</div>
         </footer>
       </div>
     </>
